@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+bin_uninstall ngrok
+rm ~/.ngrok2/ngrok.yml

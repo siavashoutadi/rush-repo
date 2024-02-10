@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+needs bashrc
+
+# Add configuration file
+say "copying ~/.bashrc.d/docker.bashrc"
+cp docker.bashrc "$HOME/.bashrc.d/"
+
+distro_script

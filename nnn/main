@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+needs bashrc
+package_install nnn
+
+say "copying bashrc.d config"
+cp nnn.bashrc ~/.bashrc.d/nnn.bashrc
+
+nnn -V

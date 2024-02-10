@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+case "$DISTRO" in
+  arch)                  package_uninstall mdbook ;;
+  debian|fedora|ubuntu)  bin_uninstall mdbook ;;
+  *)                     warning "not available for distro:$DISTRO" ;;
+esac

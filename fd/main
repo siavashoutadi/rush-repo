@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+install_function() {
+  apt_install_deb "https://github.com/sharkdp/fd/releases/download/v$version/fd_${version}_amd64.deb"
+}
+
+case "$DISTRO" in
+  arch)           package_install fd ;;
+  debian|ubuntu)  github_install_helper fd sharkdp/fd ;;
+  fedora)         package_install fd-find ;;
+  *)              fail "not available for distro:$DISTRO" ;;
+esac

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+case "$DISTRO" in
+  arch)                  package_uninstall container-diff ;;
+  debian|fedora|ubuntu)  bin_uninstall container-diff ;;
+  *)                     warning "not available for distro:$DISTRO" ;;
+esac

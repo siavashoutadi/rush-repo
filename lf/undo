@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+case "$DISTRO" in
+  arch|debian)    package_uninstall lf ;;
+  fedora|ubuntu)  bin_uninstall lf ;;
+  *)              warning "not available for distro:$DISTRO" ;;
+esac

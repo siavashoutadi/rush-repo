@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "checking if ngrok is already installed"
+
+if command_exist ngrok ; then
+  say "ngrok is already installed"
+
+else
+  needs unzip
+
+  say "installing ngrok (direct download)"
+  download_url=https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip
+  wget -O ngrok.zip $download_url
+  sudo unzip -o ngrok.zip -d /usr/local/bin/
+  rm ngrok.zip
+
+  say "copying config file to ~/.ngrok/ngrok.yml"
+  [[ -d ~/.ngrok2 ]] || mkdir ~/.ngrok2
+  cp ngrok.yml ~/.ngrok2/ngrok.yml
+
+  ngrok --version
+
+fi
