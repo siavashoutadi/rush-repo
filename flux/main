@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "installing fluxcd"
+needs bashrc
+curl -s https://fluxcd.io/install.sh | sudo bash
+say "copying $HOME/.bashrc.d/flux.bashrc"
+cp flux.bashrc ~/.bashrc.d/
+attention "restart your session or source ~/.bashrc to apply changes"

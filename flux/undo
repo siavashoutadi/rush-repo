@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+bin_uninstall flux
+rm -rf $HOME/.bashrc.d/flux.bashrc

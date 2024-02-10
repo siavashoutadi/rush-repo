@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "installing helm"
+needs bashrc
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+say "copying $HOME/.bashrc.d/helm.bashrc"
+cp helm.bashrc ~/.bashrc.d/
+attention "restart your session or source ~/.bashrc to apply changes"

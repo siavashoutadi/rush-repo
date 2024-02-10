@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+install_function() {
+    url="https://github.com/derailed/k9s/releases/download/v${version}/k9s_Linux_amd64.tar.gz"
+
+    pushtmp
+    curl -sL "$url" | tar -xzv k9s
+    chmod +x k9s
+    sudo mv k9s /usr/local/bin/
+    popd
+}
+
+github_install_helper k9s "derailed/k9s" version

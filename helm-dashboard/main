@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+install_function() {
+    url="https://github.com/komodorio/helm-dashboard/releases/download/v${version}/helm-dashboard_${version}_Linux_x86_64.tar.gz"
+
+    pushtmp
+    curl -sL "$url" | tar -xzv helm-dashboard
+    chmod +x helm-dashboard
+    sudo mv helm-dashboard /usr/local/bin/
+    popd
+}
+
+github_install_helper helm-dashboard "komodorio/helm-dashboard" ""

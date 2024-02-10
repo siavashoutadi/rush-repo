@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+bin_uninstall helm
+rm -rf $HOME/.bashrc.d/helm.bashrc

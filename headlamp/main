@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+install_function() {
+    # TODO: latest version is wrong. Hardcoding to 0.22.0
+    apt_install_deb "https://github.com/headlamp-k8s/headlamp/releases/download/v0.22.0/headlamp_0.22.0-1_amd64.deb"
+}
+
+github_install_helper headlamp "headlamp-k8s/headlamp"

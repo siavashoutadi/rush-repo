@@ -1,0 +1,1 @@
+. <(helmfile completion bash)

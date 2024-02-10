@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+install_function() {
+    url="https://github.com/cnrancher/autok3s/releases/download/v${version}/autok3s_linux_amd64"
+    needs bashrc
+
+    pushtmp
+    wget "$url"
+    sudo mv autok3s_linux_amd64 /usr/local/bin/autok3s
+    sudo chmod +x /usr/local/bin/autok3s
+    popd
+    say "copying $HOME/.bashrc.d/autok3s.bashrc"
+    cp autok3s.bashrc ~/.bashrc.d/
+    attention "restart your session or source ~/.bashrc to apply changes"
+}
+
+github_install_helper autok3s "cnrancher/autok3s" version

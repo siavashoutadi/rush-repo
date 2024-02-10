@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+install_function() {
+    needs bashrc
+    url="https://github.com/helmfile/helmfile/releases/download/v${version}/helmfile_${version}_linux_amd64.tar.gz"
+
+    pushtmp
+    curl -sL "$url" | tar -xzv helmfile
+    chmod +x helmfile
+    sudo mv helmfile /usr/local/bin/
+    popd
+
+    say "copying $HOME/.bashrc.d/helmfile.bashrc"
+    cp helmfile.bashrc ~/.bashrc.d/
+    attention "restart your session or source ~/.bashrc to apply changes"
+}
+
+github_install_helper helmfile "helmfile/helmfile"

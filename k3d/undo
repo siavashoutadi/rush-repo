@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+bin_uninstall k3d
+rm $HOME/.bashrc.d/k3d.bashrc
