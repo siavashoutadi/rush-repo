@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Unset git aliases"
+git config --global --unset alias.review || true
+git config --global --unset alias.co || true
+git config --global --unset alias.st || true
+git config --global --unset alias.tree || true
+git config --global --unset alias.treef || true
+git config --global --unset alias.stat || true
+git config --global --unset alias.sync || true
+git config --global --unset alias.nv || true
+git config --global --unset alias.rs || true
+git config --global --unset alias.plain || true
+
+say "Unset core"
+git config --global --unset core.filemode || true
+git config --global --unset core.autocrlf || true
+git config --global --unset core.pager || true
+
+say "Configrue interactive"
+git config --global --unset interactive.diffFilter || true
+
+say "Unset delta"
+git config --global --unset delta.navigate || true
+git config --global --unset delta.side-by-side || true
+git config --global --unset delta.line-numbers || true
+
+say "Unset color"
+git config --global --unset color.ui || true
+git config --global --unset color.branch || true
+git config --global --unset color.status || true
+
+say "Unset merge"
+git config --global --unset merge.conflictstyle || true
+
+say "Unset help"
+git config --global --unset help.autocorrect || true
+
+say "Unset diff"
+git config --global --unset diff.colorMoved || true
+
+say "Unset difftool"
+git config --global --unset difftool.prompt || true
+git config --global --unset difftool.trustExitCode || true
