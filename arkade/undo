@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+bin_uninstall arkade
+say "Remove ~/.arkade"
+rm -rf ~/.arkade
+rm -rf ~/.bashrc.d/arkade.bashrc
