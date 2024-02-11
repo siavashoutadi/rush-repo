@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "installing pyenv"
+
+needs bashrc
+
+package_install make build-essential \
+    libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
+    wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev \
+    libxmlsec1-dev libffi-dev liblzma-dev
+
+curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+
+say "copying ~/.bashrc.d/pyenv.bashrc"
+cp pyenv.bashrc ~/.bashrc.d/
+attention "restart your session or source ~/.bashrc to apply changes"
