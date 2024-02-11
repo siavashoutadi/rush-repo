@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "installing sdkman"
+
+needs bashrc
+curl -s "https://get.sdkman.io" | bash
+
+say "copying ~/.bashrc.d/sdkman.bashrc"
+cp sdkman.bashrc ~/.bashrc.d/
+attention "restart your session or source ~/.bashrc to apply changes"
