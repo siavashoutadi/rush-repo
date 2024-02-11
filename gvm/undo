@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+rm -rf ~/.gvm
+rm -rf ~/.bashrc.d/gvm.bashrc

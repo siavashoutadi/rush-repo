@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "installing gvm"
+needs bashrc
+
+package_install bison
+bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
+
+say "copying ~/.bashrc.d/gvm.bashrc"
+cp gvm.bashrc ~/.bashrc.d/
+attention "restart your session or source ~/.bashrc to apply changes"
