@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+source ~/.nvm/nvm.sh
+nvm unload
+rm -rf ~/.nvm
+rm -rf ~/.bashrc.d/nvm.bashrc

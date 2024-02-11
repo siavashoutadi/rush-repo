@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "installing nvm"
+
+install_function() {
+    needs bashrc
+    url="https://raw.githubusercontent.com/nvm-sh/nvm/v${version}/install.sh"
+    say $url
+    export PROFILE=/dev/null
+    curl -o- $url | bash
+    unset $PROFILE
+    say "copying ~/.bashrc.d/nvm.bashrc"
+    cp nvm.bashrc ~/.bashrc.d/
+    attention "restart your session or source ~/.bashrc to apply changes"
+    source ~/.nvm/nvm.sh
+}
+
+github_install_helper nvm "nvm-sh/nvm"
