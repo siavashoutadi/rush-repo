@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing duf"
+pushtmp
+curl -sL https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_x86_64.tar.gz | tar -xvz duf
+chmod +x duf
+sudo mv duf /usr/local/bin/
+popd
+say "Installing duf finished"
