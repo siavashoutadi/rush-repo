@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+rush undo $REPO:autok3s
+rush undo $REPO:container-diff
+rush undo $REPO:ctop
+rush undo $REPO:flux
+rush undo $REPO:headlamp
+rush undo $REPO:helm
+rush undo $REPO:helm-dashboard
+rush undo $REPO:helmfile
+rush undo $REPO:k3d
+rush undo $REPO:k9s
+rush undo $REPO:kube-capacity
+rush undo $REPO:kubectl
+rush undo $REPO:lazydocker
+rush undo $REPO:trivy

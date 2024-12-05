@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+rush get $REPO:autok3s
+rush get $REPO:container-diff
+rush get $REPO:ctop
+rush get $REPO:docker
+rush get $REPO:flux
+rush get $REPO:headlamp
+rush get $REPO:helm
+rush get $REPO:helm-dashboard
+rush get $REPO:helmfile
+rush get $REPO:k3d
+rush get $REPO:k9s
+rush get $REPO:kube-capacity
+rush get $REPO:kubectl
+rush get $REPO:lazydocker
+rush get $REPO:trivy
