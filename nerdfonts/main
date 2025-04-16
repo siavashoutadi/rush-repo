@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+if ls ~/.local/share/fonts/*Nerd* &>/dev/null; then
+  say "Nerd Fonts already present"
+else
+    say "Installing Nerd Fonts..."
+    pushtmp
+    git clone --depth 1 https://github.com/ryanoasis/nerd-fonts.git
+    cd nerd-fonts
+    ./install.sh
+    popd
+    fc-cache -fv
+fi
+
+
