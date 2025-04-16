@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+needs bashrc
+
+install_function() {
+  apt_install_deb "https://github.com/sharkdp/bat/releases/download/v${version}/bat_${version}_amd64.deb"
+}
+
+case "$DISTRO" in
+  arch|fedora)    package_install bat ;;
+  debian|ubuntu)  github_install_helper bat sharkdp/bat ;;
+  *)              fail "not available for distro:$DISTRO" ;;
+esac
+
+say "copying configuration files"
+mkdir -p ~/.config/bat
+cp config ~/.config/bat/config
+cp bat.bashrc ~/.bashrc.d/
