@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+package_install vim
+sudo update-alternatives --set editor /usr/bin/vim.basic
+cp .vimrc ~/
