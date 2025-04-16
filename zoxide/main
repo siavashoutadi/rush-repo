@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+needs bashrc
+say "installing zoxide"
+package_install zoxide
+say "copying $HOME/.bashrc.d/zoxide.bashrc"
+cp zoxide.bashrc ~/.bashrc.d/
+attention "restart your session or source ~/.bashrc to apply changes"
