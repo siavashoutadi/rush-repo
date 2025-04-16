@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+needs nerdfonts
+
 install_function() {
     say "Installing lsd"
     apt_install_deb "https://github.com/lsd-rs/lsd/releases/download/v${version}/lsd_${version}_amd64.deb"
