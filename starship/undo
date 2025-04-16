@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+sudo rm -rf /usr/local/bin/starship
+rm -rf ~/.bashrc.d/starship.bashrc

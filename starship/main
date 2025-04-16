@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+needs nerdfonts
+needs bashrc
+
+curl -sS https://starship.rs/install.sh | sh -s -- -f
+
+say "copying $HOME/.bashrc.d/starship.bashrc"
+cp starship.bashrc ~/.bashrc.d/
+attention "restart your session or source ~/.bashrc to apply changes"
