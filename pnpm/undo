@@ -1,3 +1,11 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
-distro_script undo
+
+rm -rf "$HOME/.local/share/pnpm"
+rm -rf "$HOME/.pnpm-store"
+rm -f "$HOME/.local/bin/pnpm"
+TARGET_FILE="$HOME/.bashrc"
+
+sed -i '/# pnpm/,/# pnpm end/d' "$TARGET_FILE"
+
+echo "Removed pnpm configuration from $TARGET_FILE"
