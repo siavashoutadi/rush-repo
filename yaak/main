@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+apt_install_deb https://github.com/mountain-loop/yaak/releases/download/v2025.1.2/yaak_2025.1.2_amd64.deb
