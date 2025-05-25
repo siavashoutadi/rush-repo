@@ -45,3 +45,5 @@ git config --global diff.colorMoved "default"
 say "Configure difftool"
 git config --global difftool.prompt "false"
 git config --global difftool.trustExitCode "true"
+
+git config --global init.defaultBranch
