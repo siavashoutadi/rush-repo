@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "installing fastfetch"
+
+needs wget
+pushtmp
+
+wget https://github.com/fastfetch-cli/fastfetch/releases/download/2.48.1/fastfetch-linux-amd64.deb
+sudo apt install -y ./fastfetch-linux-amd64.deb
