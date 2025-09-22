@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "installing codellm"
+
+version=$(curl -s "https://api.github.com/repos/abacusai/codellm-releases/releases/latest" | grep "tag_name" | cut -d : -f 2,3 | tr -d \"\ ,v)
+url="https://github.com/abacusai/codellm-releases/releases/download/${version}/codellm_${version}_amd64.deb"
+
+apt_install_deb $url
