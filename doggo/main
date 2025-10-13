@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+install_function() {
+  pushtmp
+  wget "https://github.com/mr-karan/doggo/releases/download/v${version}/doggo_${version}_Linux_x86_64.tar.gz"
+  tar -xvzf doggo_1.0.5_Linux_x86_64.tar.gz
+  sudo install doggo_1.0.5_Linux_x86_64/doggo /usr/local/bin/doggo
+  rm -rf doggo_*_Linux_x86_64
+  popd
+}
+
+github_install_helper doggo "mr-karan/doggo"
