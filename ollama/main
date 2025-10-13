@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing Ollama..."
+
+curl -fsSL https://ollama.com/install.sh | sh
