@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+# Get current user info
+CURRENT_USER=$(whoami)
+USER_UID=$(id -u)
+USER_GID=$(id -g)
+USER_HOME=$(eval echo ~$CURRENT_USER)
+
+# Ensure data directory exists
+mkdir -p "$USER_HOME/.open-webui"
+
+# Create the service file
+cat > /tmp/open-webui.service <<EOF
+[Unit]
+Description=Open WebUI Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=$CURRENT_USER
+Group=$CURRENT_USER
+
+# Environment
+Environment="DATA_DIR=$USER_HOME/.open-webui"
+Environment="HOME=$USER_HOME"
+Environment="PATH=$USER_HOME/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+
+# Use a safe working dir
+WorkingDirectory=$USER_HOME/.open-webui
+
+# Exec
+ExecStart=$USER_HOME/.local/bin/uvx --python 3.11 open-webui@latest serve --port 65356
+
+# Restart policy
+Restart=on-failure
+RestartSec=5s
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+
+# Hardening
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=false
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+# Copy to systemd directory (requires sudo)
+sudo cp /tmp/open-webui.service /etc/systemd/system/open-webui.service
+
+# Reload and enable
+sudo systemctl daemon-reload
+sudo systemctl enable open-webui.service
+sudo systemctl restart open-webui.service
+
+# Show status
+sudo systemctl status open-webui.service

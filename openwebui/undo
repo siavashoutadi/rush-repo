@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Uninstalling Ollama..."
+
+sudo systemctl stop open-webui.service
+sudo systemctl disable open-webui.service
+
+sudo rm -f /etc/systemd/system/open-webui.service
+
+sudo systemctl daemon-reload
+sudo systemctl reset-failed
+
+echo "Open WebUI service has been uninstalled."
+echo ""
+echo "Note: Data directory ~/.open-webui has NOT been removed."
+echo "To remove data, run: rm -rf ~/.open-webui"
