@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+needs bashrc
+
+say "Installing nerdctl full version (rootless)"
+
+get_github_release_version() {
+  curl -s "https://api.github.com/repos/$1/releases/latest" | grep "tag_name" | cut -d : -f 2,3 | tr -d \"\ ,v
+}
+
+install_function() {
+  pushtmp
+
+  version="$(get_github_release_version "containerd/nerdctl")"
+  wget "https://github.com/containerd/nerdctl/releases/download/v${version}/nerdctl-full-${version}-linux-amd64.tar.gz"
+  tar -xvf nerdctl-full-${version}-linux-amd64.tar.gz
+
+  install_dir="/opt/nerdctl/${version}"
+  say "Installing to ${install_dir}"
+  sudo mkdir -p "${install_dir}"
+  sudo cp -a bin lib libexec share "${install_dir}/"
+
+  for f in "${install_dir}/bin/"*; do
+    sudo ln -sfn "$f" "/usr/local/bin/$(basename $f)"
+  done
+
+  sudo cp "${install_dir}/lib/systemd/system/containerd.service" /etc/systemd/system/
+  sudo cp "${install_dir}/lib/systemd/system/buildkit.service" /etc/systemd/system/
+  sudo cp "${install_dir}/lib/systemd/system/stargz-snapshotter.service" /etc/systemd/system/
+
+  sudo systemctl daemon-reload
+  for unit in containerd.service buildkit.service stargz-snapshotter.service; do
+    sudo systemctl enable "${unit}" --now
+  done
+
+  containerd-rootless-setuptool.sh install
+  containerd-rootless-setuptool.sh install-buildkit
+
+  CNI_VERSION=$(curl -s https://api.github.com/repos/containernetworking/plugins/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/v//')
+  wget https://github.com/containernetworking/plugins/releases/download/v${CNI_VERSION}/cni-plugins-linux-amd64-v${CNI_VERSION}.tgz
+  sudo mkdir -p /opt/cni/bin
+  sudo tar -xzvf cni-plugins-linux-*.tgz -C /opt/cni/bin
+  sudo rm -f cni-plugins-linux-*.tgz
+
+  popd
+
+  say "Install complete"
+}
+
+install_function
