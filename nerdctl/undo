@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "uninstalling nerdctl (rootless)"
+
+for f in $(find /usr/local/bin -maxdepth 1 -type l -printf '%p -> %l\n' | awk '/nerdctl/ {print $1}'); do echo $f;done
+sudo rm -rf /opt/nerdctl
+
+for unit in containerd.service buildkit.service stargz-snapshotter.service; do
+  sudo systemctl disable "${unit}" --now
+done
+
+sudo rm -f /etc/systemd/system/containerd.service
+sudo rm -f /etc/systemd/system/buildkit.service
+sudo rm -f /etc/systemd/system/stargz-snapshotter.service
+
+sudo rm -rf /opt/cni
