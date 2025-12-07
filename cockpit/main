@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+needs virt-manager
+
+package_install cockpit
+package_install cockpit-machines
+
+pushtmp
+wget https://github.com/45Drives/cockpit-navigator/releases/download/v0.5.10/cockpit-navigator_0.5.10-1focal_all.deb
+sudo apt install ./cockpit-navigator_0.5.10-1focal_all.deb
+popd
+
+
+
