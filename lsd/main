@@ -6,6 +6,9 @@ needs nerdfonts
 install_function() {
     say "Installing lsd"
     apt_install_deb "https://github.com/lsd-rs/lsd/releases/download/v${version}/lsd_${version}_amd64.deb"
+    say "copying $HOME/.bashrc.d/lsd.bashrc"
+    cp lsd.bashrc ~/.bashrc.d/
+    attention "restart your session or source ~/.bashrc to apply changes"
 }
 
 github_install_helper lsd "lsd-rs/lsd"
