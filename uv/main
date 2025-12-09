@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+needs bashrc
+
+say "Installing uv"
+
+curl -LsSf https://astral.sh/uv/install.sh | sh
+
+say "Copy uv.bashrc"
+cp uv.bashrc ~/.bashrc.d/
+attention "restart your session or source ~/.bashrc to apply changes"
