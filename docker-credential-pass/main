@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+needs pass
+
+install_function() {
+    url=https://github.com/docker/docker-credential-helpers/releases/download/v${version}/docker-credential-pass-v${version}.linux-amd64
+
+    pushtmp
+    wget "$url"
+    chmod +x docker-credential-pass-v${version}.linux-amd64
+    sudo mv docker-credential-pass-v${version}.linux-amd64 /usr/local/bin/docker-credential-pass
+    popd
+}
+
+github_install_helper docker-credential-pass "docker/docker-credential-helpers"
