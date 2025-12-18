@@ -2,48 +2,17 @@
 source "$REPO_PATH/lib.sh"
 
 needs git
+needs delta
+needs gh
 
-say "Configure git aliases"
-git config --global alias.review "push origin -u --force"
-git config --global alias.co "checkout"
-git config --global alias.st "status"
-git config --global alias.tree "!git --no-pager log --decorate --oneline --graph --all --color --topo-order -30"
-git config --global alias.treef "log --decorate --oneline --graph --all --topo-order --color"
-git config --global alias.stat "show --stat"
-git config --global alias.sync "fetch --prune"
-git config --global alias.nv "commit --no-verify"
-git config --global alias.rs "reset --soft HEAD^"
-git config --global alias.plain "!git -c core.pager=\"delta --no-gitconfig\""
+mkdir -p ~/.config/git/
 
-say "Configure core"
-git config --global core.filemode "True"
-git config --global core.autocrlf "input"
-git config --global core.pager "delta"
+read -p "Enter your git user name: " GIT_USER_NAME
+read -p "Enter your git user email: " GIT_USER_EMAIL
 
-say "Configrue interactive"
-git config --global interactive.diffFilter "delta --color-only"
+cp ./config ~/.config/git/config
+cp ./attributes ~/.config/git/attributes
+cp ./ignore ~/.config/git/ignore
 
-say "Configure delta"
-git config --global delta.navigate "true"
-git config --global delta.side-by-side "true"
-git config --global delta.line-numbers "true"
-
-say "Configure color"
-git config --global color.ui "auto"
-git config --global color.branch "auto"
-git config --global color.status "auto"
-
-say "Configure merge"
-git config --global merge.conflictstyle "diff3"
-
-say "Configure help"
-git config --global help.autocorrect "prompt"
-
-say "Configure diff"
-git config --global diff.colorMoved "default"
-
-say "Configure difftool"
-git config --global difftool.prompt "false"
-git config --global difftool.trustExitCode "true"
-
-git config --global init.defaultBranch
+sed -i "s/EMAIL/$GIT_USER_EMAIL/g" ~/.config/git/config
+sed -i "s/NAME/$GIT_USER_NAME/g" ~/.config/git/config
