@@ -1,0 +1,12 @@
+*.py diff=python
+*.pyi diff=python
+*.css diff=css
+*.go diff=golang
+*.htm diff=html
+*.html diff=html
+*.java diff=java
+*.md diff=markdown
+*.sass diff=css
+*.scss diff=css
+*.sh diff=bash
+*.zsh diff=bash

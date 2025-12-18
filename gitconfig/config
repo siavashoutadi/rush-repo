@@ -1,0 +1,89 @@
+[user]
+    email = EMAIL
+    name = NAME
+
+[alias]
+    git = !git
+    review = push origin -u --force
+    co = checkout
+    st = status
+    conf = config --list --show-scope
+    confo = config --list --show-origin
+    tree = log --decorate --oneline --first-parent --graph --all --color --topo-order -15
+    treef = log --decorate --oneline --first-parent --graph --all --color --topo-order
+    stat = show --stat
+    nv = commit --no-verify
+    rs = reset --soft HEAD^
+    plain = !git -c core.pager=less
+    canow = commit --amend --date now
+    switch-recent = !git branch --sort=-committerdate --format='%(refname:short)' | fzf --preview='git log --date=relative --color main..{}' | xargs git switch
+    rm-merged = !git branch --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" { print $1 }' | xargs -r git branch -D
+    sync = !git switch main && git pull && git rm-merged
+    list-changed = diff --name-only --diff-filter d
+    edit-unmerged = !git diff --name-only --diff-filter U | xargs -r $(git var GIT_EDITOR)
+
+[core]
+    filemode = True
+    autocrlf = input
+    pager = delta
+
+[help]
+    autoCorrect = immediate
+
+[color "status"]
+    branch = green bold
+    changed = yellow
+
+[difftool]
+    prompt = false
+    trustExitCode = true
+
+[pager]
+    status = true
+    ls-files = true
+
+[delta]
+    #hyperlinks = true
+    line-numbers = true
+    navigate = true
+    side-by-side = true
+    syntax-theme = Monokai Extended
+
+[diff]
+    colorMoved = default
+	interHunkContext = 3
+	algorithm = histogram
+
+[interactive]
+    diffFilter = delta --color-only
+
+[merge]
+    conflictstyle = diff3
+
+[branch]
+	sort = -committerdate
+
+[fetch]
+	prune = true
+
+[commit]
+	verbose = 1
+	cleanup = scissors
+
+[rerere]
+	enabled = true
+	autoUpdate = true
+
+[rebase]
+	abbreviateCommands = true
+
+[log]
+	follow = true
+[credential "https://github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper =
+	helper = !/usr/bin/gh auth git-credential
+[init]
+	defaultBranch = main
