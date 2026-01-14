@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+needs curl
+say "Installing sshm..."
+
+curl -sSL https://github.com/Gu1llaum-3/sshm/raw/main/install/unix.sh | bash
