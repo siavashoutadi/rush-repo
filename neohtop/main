@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing Neohtop..."
+
+version=$(get_github_release_version "Abdenasser/neohtop")
+say "Downloading Neohtop version $version"
+apt_install_deb "https://github.com/Abdenasser/neohtop/releases/download/v${version}/NeoHtop_${version}_x86_64.deb"
