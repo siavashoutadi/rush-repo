@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing DockMate..."
+
+curl -fsSL https://raw.githubusercontent.com/shubh-io/DockMate/main/install.sh | sh
