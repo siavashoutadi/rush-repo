@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Removing DockMate..."
+
+sudo rm -rf /usr/local/bin/dockmate
