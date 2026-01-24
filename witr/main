@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+curl -fsSL https://raw.githubusercontent.com/pranshuparmar/witr/main/install.sh | bash
