@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing hwatch..."
+
+version=$(get_github_release_version "blacknon/hwatch")
+say "Downloading Neohtop version $version"
+apt_install_deb "https://github.com/blacknon/hwatch/releases/download/${version}/hwatch-${version}.x86_64-unknown-linux-musl.deb"
