@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing Viddy..."
+
+install_function() {
+    url="https://github.com/sachaos/viddy/releases/download/v${version}/viddy-v${version}-linux-x86_64.tar.gz"
+
+    pushtmp
+    wget -O viddy.tar.gz "$url"
+    tar xvf viddy.tar.gz
+    sudo mv viddy /usr/local/bin
+    popd
+}
+
+github_install_helper viddy "sachaos/viddy"
