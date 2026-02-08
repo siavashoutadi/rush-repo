@@ -1,0 +1,3 @@
+Fast, modern traceroute with real-time TUI, per-hop stats, ASN/geo lookup, ECMP detection, and MPLS label parsing. A better mtr.
+
+https://github.com/lance0/ttl
