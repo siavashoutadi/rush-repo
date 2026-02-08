@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing ttl..."
+
+pushtmp
+curl -LO https://github.com/lance0/ttl/releases/latest/download/ttl-x86_64-unknown-linux-musl.tar.gz
+tar xzf ttl-*.tar.gz
+sudo mv ttl /usr/local/bin/
+rm -rf ttl-*.tar.gz
+sudo setcap cap_net_raw+ep /usr/local/bin/ttl
+popd
