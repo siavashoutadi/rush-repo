@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing dev janitor..."
+
+apt_install_deb https://github.com/cocojojo5213/Dev-Janitor/releases/download/v2.2.7.2/Dev.Janitor_2.2.9_amd64.deb
