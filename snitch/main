@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing snitch..."
+
+curl -sSL https://raw.githubusercontent.com/karol-broda/snitch/master/install.sh | sh
