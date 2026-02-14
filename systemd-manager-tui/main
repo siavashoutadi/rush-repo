@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing systemd-manager-tui..."
+
+version=$(get_github_release_version "matheus-git/systemd-manager-tui")
+
+say "Downloading systemd-manager-tui version $version"
+apt_install_deb "https://github.com/matheus-git/systemd-manager-tui/releases/download/v${version}/systemd-manager-tui_${version}_amd64.deb"
