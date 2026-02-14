@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Uninstalling systemd-manager-tui..."
+
+sudo apt remove -y systemd-manager-tui

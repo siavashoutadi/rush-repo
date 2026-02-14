@@ -1,0 +1,3 @@
+A program for managing systemd services through a TUI (Terminal User Interfaces).
+
+https://crates.io/crates/systemd-manager-tui
