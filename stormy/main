@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing stormy..."
+
+install_function() {
+  pushtmp
+  wget "https://github.com/ashish0kumar/stormy/releases/download/v${version}/stormy_linux_x86_64.tar.gz"
+
+  sudo install stormy_*/stormy /usr/local/bin/stormy
+  rm -rf stormy_*_linux_x86_64
+  popd
+}
+
+github_install_helper stormy "ashish0kumar/stormy"
