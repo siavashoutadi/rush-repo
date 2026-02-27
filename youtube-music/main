@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing Youtube Music..."
+
+version=$(get_github_release_version "pear-devs/pear-desktop")
+
+say "Downloading Youtube Music version $version"
+
+apt_install_deb "https://github.com/pear-devs/pear-desktop/releases/download/v${version}/youtube-music_${version}_amd64.deb"

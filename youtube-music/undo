@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "UnInstalling Youtube Music..."
+
+sudo apt remove youtube-music -y
