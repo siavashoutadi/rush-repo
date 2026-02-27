@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing tufw..."
+
+version=$(get_github_release_version "peltho/tufw")
+
+say "Downloading Tufw version $version"
+
+apt_install_deb "https://github.com/peltho/tufw/releases/download/v${version}/tufw_${version}_linux_amd64.deb"
