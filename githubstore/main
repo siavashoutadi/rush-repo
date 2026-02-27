@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing github store..."
+
+version=$(get_github_release_version "rainxchzed/Github-Store")
+say "Downloading Github Store version $version"
+
+apt_install_deb "https://github.com/rainxchzed/Github-Store/releases/download/${version}/Github.Store-${version}_amd64.deb"
