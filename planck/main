@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+sudo apt-get install xdotool -y
+
+version=$(get_github_release_version "stella-labs/planck-releases")
+
+url="https://github.com/stella-labs/planck-releases/releases/download/${version}/Planck_${version}_amd64.deb"
+
+say "Downloading Planck version $version"
+
+apt_install_deb "$url"
