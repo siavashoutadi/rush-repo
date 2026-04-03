@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Uninstalling Planck clipboard manager..."
+
+sudo apt remove -y planck
