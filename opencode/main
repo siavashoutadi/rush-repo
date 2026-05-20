@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing opencode..."
+
+version=$(get_github_release_version "anomalyco/opencode")
+say "Downloading opencode version $version"
+apt_install_deb "https://github.com/anomalyco/opencode/releases/download/v${version}/opencode-desktop-linux-amd64.deb"
