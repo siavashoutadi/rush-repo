@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing <PACKAGE_NAME>..."
+
+version=$(get_github_release_version "<GITHUB_REPO>")
+say "Downloading <PACKAGE_NAME> version $version"
+apt_install_deb "https://github.com/<GITHUB_REPO>/releases/download/v${version}/<PACKAGE_NAME>_${version}_x86_64.deb"
