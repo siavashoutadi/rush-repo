@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Uninstalling <PACKAGE_NAME>..."
+
+sudo apt remove -y <PACKAGE_NAME>
