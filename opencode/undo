@@ -4,3 +4,7 @@ source "$REPO_PATH/lib.sh"
 say "Uninstalling opencode..."
 
 sudo apt remove -y opencode
+
+rm -rf ~/.opencode/bin/opencode
+
+sed -i '/# opencode/d;/export PATH=.*\.opencode\/bin.*/d' ~/.bashrc
