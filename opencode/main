@@ -6,3 +6,6 @@ say "Installing opencode..."
 version=$(get_github_release_version "anomalyco/opencode")
 say "Downloading opencode version $version"
 apt_install_deb "https://github.com/anomalyco/opencode/releases/download/v${version}/opencode-desktop-linux-amd64.deb"
+
+curl -fsSL https://opencode.ai/install | bash
+attention "restart your session or source ~/.bashrc to apply changes"
