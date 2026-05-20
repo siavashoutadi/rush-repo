@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing clipboard history manager"
+
+curl -sL http://install-clipboard.gustavosett.dev | bash
+sudo usermod -aG input $USER && newgrp input
