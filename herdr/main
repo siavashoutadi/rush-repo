@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing herdr..."
+
+curl -fsSL https://herdr.dev/install.sh | sh
+
+attention "restart your session or source ~/.bashrc to apply changes"
