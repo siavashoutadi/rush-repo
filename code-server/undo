@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Uninstalling code-server..."
+
+sudo systemctl disable --now code-server@$USER
+sudo apt remove -y code-server
+rm -rf ~/.config/code-server/config.yaml
