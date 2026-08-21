@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+needs fzf
+
+install_function() {
+  pushtmp
+  url="https://github.com/BIRSAx2/mdcat/releases/download/mdcat-${version}/mdcat-${version}-x86_64-unknown-linux-gnu.tar.gz"
+  curl -sL "$url" | tar -xzv
+  sudo install -m 755 "mdcat-${version}-x86_64-unknown-linux-gnu/mdcat" ~/.local/bin
+  man_install "mdcat-${version}-x86_64-unknown-linux-gnu/mdcat.1/mdcat.1"
+  mkdir -p "$HOME/.local/bin"
+  ln -sf "$(command -v mdcat)" "$HOME/.local/bin/mdless"
+  ln -sf "$(command -v mdcat)" "$HOME/.local/bin/mdpick"
+  popd
+}
+
+version=$(get_github_release_version "BIRSAx2/mdcat" | sed 's/^mdcat-//')
+say "Installing mdcat version $version"
+
+github_install_helper mdcat BIRSAx2/mdcat --version "$version"

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Uninstalling mdcat..."
+
+bin_uninstall mdcat
+man_uninstall mdcat.1
+rm -f ~/.local/bin/mdless ~/.local/bin/mdpick ~/.local/bin/mdcat
