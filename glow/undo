@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Uninstalling glow..."
+
+sudo apt remove -y glow

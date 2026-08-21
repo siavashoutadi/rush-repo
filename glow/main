@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing glow..."
+
+version=$(get_github_release_version "charmbracelet/glow")
+say "Downloading glow version $version"
+apt_install_deb "https://github.com/charmbracelet/glow/releases/download/v${version}/glow_${version}_amd64.deb"
