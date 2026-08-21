@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing handy..."
+
+version=$(get_github_release_version "cjpais/Handy")
+say "Downloading handy version $version"
+apt_install_deb "https://github.com/cjpais/Handy/releases/download/v${version}/Handy_${version}_amd64.deb"
+
+say "Installing text input helpers (xdotool, wtype)..."
+sudo apt-get install -y xdotool wtype
