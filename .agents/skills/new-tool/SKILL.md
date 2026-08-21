@@ -1,6 +1,6 @@
 ---
 name: new-tool
-description: Add a new tool to rush repo
+description: Scaffold a new tool folder in the rush repo from templates (info/main/undo). Use when the user wants to add or onboard a new tool or CLI entry to this repo.
 ---
 
 # Add a new tool to rush repo
