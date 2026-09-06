@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Uninstalling leaf..."
+
+bin_uninstall leaf
+sudo rm -rf ~/.config/leaf
