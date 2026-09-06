@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+install_function() {
+    pushtmp
+    curl -sL "https://github.com/modem-dev/hunk/releases/download/v${version}/hunkdiff-linux-x64.tar.gz" -o hunk.tar.gz
+    tar -xvzf hunk.tar.gz
+    sudo install hunkdiff-linux-x64/hunk /usr/local/bin/hunk
+    rm -rf hunkdiff-linux-x64
+    popd
+}
+
+github_install_helper hunk "modem-dev/hunk"
