@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+install_function() {
+  pushtmp
+  curl -sL "https://github.com/RivoLink/leaf/releases/download/${version}/leaf-linux-x86_64" -o leaf
+  sudo install leaf /usr/local/bin/leaf
+  rm -f leaf
+  popd
+}
+
+github_install_helper leaf "RivoLink/leaf"

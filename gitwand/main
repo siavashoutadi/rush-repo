@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing gitwand..."
+
+version=$(get_github_release_version "devlint/GitWand")
+say "Downloading gitwand version $version"
+apt_install_deb "https://github.com/devlint/GitWand/releases/download/v${version}/GitWand_${version}_amd64.deb"
