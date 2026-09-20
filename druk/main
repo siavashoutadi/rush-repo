@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "Installing druk..."
+
+version=$(get_github_release_version "letstri/druk")
+say "Downloading druk version $version"
+apt_install_deb "https://github.com/letstri/druk/releases/download/v${version}/druk_${version}_amd64.deb"
