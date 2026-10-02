@@ -3,6 +3,6 @@ source "$REPO_PATH/lib.sh"
 
 say "Installing herdr..."
 
-curl -fsSL https://herdr.dev/install.sh | sh
+curl_install_script https://herdr.dev/install.sh
 
 attention "restart your session or source ~/.bashrc to apply changes"
