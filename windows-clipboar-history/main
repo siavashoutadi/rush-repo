@@ -5,5 +5,5 @@ require_linux
 
 say "Installing clipboard history manager"
 
-curl -sL http://install-clipboard.gustavosett.dev | bash
+curl_install_script http://install-clipboard.gustavosett.dev
 sudo usermod -aG input $USER && newgrp input

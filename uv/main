@@ -5,7 +5,7 @@ needs bashrc
 
 say "Installing uv"
 
-curl -LsSf https://astral.sh/uv/install.sh | sh
+curl_install_script https://astral.sh/uv/install.sh
 
 say "Copy uv.bashrc"
 install_shell_config uv

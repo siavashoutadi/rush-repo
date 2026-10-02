@@ -4,7 +4,7 @@ source "$REPO_PATH/lib.sh"
 say "installing sdkman"
 
 needs bashrc
-curl -s "https://get.sdkman.io" | bash
+curl_install_script https://get.sdkman.io
 
 say "copying ~/.bashrc.d/sdkman.bashrc"
 install_shell_config sdkman

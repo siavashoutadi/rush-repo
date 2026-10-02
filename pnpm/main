@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
-curl -fsSL https://get.pnpm.io/install.sh | sh -
+curl_install_script https://get.pnpm.io/install.sh

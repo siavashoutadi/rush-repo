@@ -3,4 +3,4 @@ source "$REPO_PATH/lib.sh"
 
 say "Installing Ollama..."
 
-curl -fsSL https://ollama.com/install.sh | sh
+curl_install_script https://ollama.com/install.sh

@@ -3,4 +3,4 @@ source "$REPO_PATH/lib.sh"
 
 say "Installing snitch..."
 
-curl -sSL https://raw.githubusercontent.com/karol-broda/snitch/master/install.sh | sh
+curl_install_script https://raw.githubusercontent.com/karol-broda/snitch/master/install.sh

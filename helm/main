@@ -3,7 +3,7 @@ source "$REPO_PATH/lib.sh"
 
 say "installing helm"
 needs bashrc
-curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+curl_install_script https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
 say "copying $HOME/.bashrc.d/helm.bashrc"
 install_shell_config helm
 attention "restart your session or source ~/.bashrc to apply changes"
