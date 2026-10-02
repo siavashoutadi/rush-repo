@@ -5,9 +5,15 @@ needs nerdfonts
 
 install_function() {
     say "Installing lsd"
-    apt_install_deb "https://github.com/lsd-rs/lsd/releases/download/v${version}/lsd_${version}_amd64.deb"
+
+    if is_macos; then
+      brew_install lsd
+    else
+      apt_install_deb "https://github.com/lsd-rs/lsd/releases/download/v${version}/lsd_${version}_amd64.deb"
+    fi
+
     say "copying $HOME/.bashrc.d/lsd.bashrc"
-    cp lsd.bashrc ~/.bashrc.d/
+    install_shell_config lsd
     attention "restart your session or source ~/.bashrc to apply changes"
 }
 

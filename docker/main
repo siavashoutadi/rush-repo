@@ -5,6 +5,6 @@ needs bashrc
 
 # Add configuration file
 say "copying ~/.bashrc.d/docker.bashrc"
-cp docker.bashrc "$HOME/.bashrc.d/"
+install_shell_config docker
 
 distro_script

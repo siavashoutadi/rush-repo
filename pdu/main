@@ -3,7 +3,20 @@ source "$REPO_PATH/lib.sh"
 
 install_function() {
   pushtmp
-  url="https://github.com/KSXGitHub/parallel-disk-usage/releases/download/$version/pdu-x86_64-unknown-linux-gnu"
+
+  if is_macos; then
+    # pdu only publishes an intel macos build
+    if [[ "$(os_arch)" != "amd64" ]]; then
+      fail "pdu only publishes an x86_64-apple-darwin build, apple silicon needs rosetta"
+      popd
+      exit 1
+    fi
+
+    url="https://github.com/KSXGitHub/parallel-disk-usage/releases/download/$version/pdu-x86_64-apple-darwin"
+  else
+    url="https://github.com/KSXGitHub/parallel-disk-usage/releases/download/$version/pdu-x86_64-unknown-linux-gnu"
+  fi
+
   wget -O pdu "$url"
   sudo install -m 755 pdu /usr/local/bin/
   popd

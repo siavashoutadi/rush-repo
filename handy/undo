@@ -3,4 +3,9 @@ source "$REPO_PATH/lib.sh"
 
 say "Uninstalling handy..."
 
+if is_macos; then
+  cask_uninstall handy
+  exit 0
+fi
+
 sudo apt remove -y handy

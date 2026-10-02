@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+# macos has no docker engine package, docker desktop is the equivalent and
+# ships the compose and buildx plugins as well
+cask_install docker-desktop
+
+attention "start docker desktop before using docker"

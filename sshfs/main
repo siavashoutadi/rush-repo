@@ -4,5 +4,10 @@ source "$REPO_PATH/lib.sh"
 case "$DISTRO" in
   arch|debian|ubuntu)  package_install sshfs ;;
   fedora)              package_install fuse-sshfs ;;
+  macos)               brew_install sshfs ;;
   *)                   fail "not available for distro:$DISTRO" ;;
 esac
+
+if is_macos; then
+  attention "sshfs needs macfuse on macos, install it with: brew install --cask macfuse"
+fi

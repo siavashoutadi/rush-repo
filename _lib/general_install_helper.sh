@@ -9,7 +9,7 @@ general_install_helper() {
     unset FORCE
     say "installing"
     install_function
-    "$binary_name" "$version_flag"
+    verify_installed "$binary_name" "$version_flag"
     say "installation complete"
   fi
 }

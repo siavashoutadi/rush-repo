@@ -7,5 +7,5 @@ needs bashrc
 curl -sS https://starship.rs/install.sh | sh -s -- -f
 
 say "copying $HOME/.bashrc.d/starship.bashrc"
-cp starship.bashrc ~/.bashrc.d/
+install_shell_config starship
 attention "restart your session or source ~/.bashrc to apply changes"

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+require_linux
+
 needs virt-manager
 
 package_install cockpit

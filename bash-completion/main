@@ -1,12 +1,15 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
-if [[ "$DISTRO" == "arch" ]]; then
-  package_install bash-completion
-fi
-
 needs bashrc
 
+case "$DISTRO" in
+  macos)  brew_install bash-completion@2 ;;
+  *)      if [[ "$DISTRO" == "arch" ]]; then
+            package_install bash-completion
+          fi ;;
+esac
+
 say "copying ~/.bashrc.d/bash_completion.bashrc"
-cp bash_completion.bashrc ~/.bashrc.d/
+install_shell_config bash_completion
 attention "restart your session or source ~/.bashrc"

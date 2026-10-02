@@ -19,7 +19,7 @@ github_install_helper() {
     unset FORCE
     say "installing $binary_name"
     install_function
-    "$binary_name" "$version_flag"
+    verify_installed "$binary_name" "$version_flag"
     say "$binary_name installation complete"
   fi
 }

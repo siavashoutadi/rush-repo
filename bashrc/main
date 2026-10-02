@@ -1,48 +1,65 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
-say "configuring bashrc.d"
+# macos defaults to zsh, which never reads ~/.bashrc.  Both shells are wired up
+# so that the per tool snippets in ~/.bashrc.d and ~/.zshrc.d are loaded no
+# matter which shell is being used.
 
-touch "$HOME/.bashrc"
-changes_done=false
+configure_rc() {
+  local shell="$1"
+  local rc="$HOME/.${shell}rc"
+  local dir="$HOME/.${shell}rc.d"
+  local changes_done=false
 
-if ! grep -q "END OF DEFAULT BASHRC" "$HOME/.bashrc"; then
-  say "appending default marker to ~/.bashrc"
-  printf "# --- END OF DEFAULT BASHRC ---\n# To restore the default file, copy it from /etc/skel/.bashrc\n\n" >> "$HOME/.bashrc"
-  changes_done=true
+  say "configuring ${shell}rc.d"
+
+  touch "$rc"
+
+  if [[ "$shell" == "bash" ]]; then
+    if ! grep -q "END OF DEFAULT BASHRC" "$rc"; then
+      say "appending default marker to ~/.bashrc"
+      printf "# --- END OF DEFAULT BASHRC ---\n# To restore the default file, copy it from /etc/skel/.bashrc\n\n" >> "$rc"
+      changes_done=true
+    fi
+
+    if ! grep -q bash_aliases "$rc"; then
+      say "appending source ~/.bash_aliases to ~/.bashrc"
+      printf "[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases\n" >> "$rc"
+      changes_done=true
+    fi
+  fi
+
+  if ! grep -q "${shell}rc.d" "$rc"; then
+    say "appending source ${shell}rc.d/* to ~/.${shell}rc"
+    printf "# Source all files in ~/.%src.d\n" "$shell" >> "$rc"
+    printf "for f in ~/.%src.d/*; do source \$f; done\n" "$shell" >> "$rc"
+    changes_done=true
+  fi
+
+  if ! grep -q "END OF ${shell^^}RC" "$rc"; then
+    say "appending end of file marker to ~/.${shell}rc"
+    printf "\n# --- END OF %sRC ---\n# If anything appears below, move it to ~/.%src.d\n\n" "${shell^^}" "$shell" >> "$rc"
+    changes_done=true
+  fi
+
+  if [[ ! -d "$dir" ]]; then
+    say "creating ~/.${shell}rc.d"
+    mkdir "$dir"
+    chmod 700 "$dir"
+    touch "$dir/empty.${shell}rc"
+    changes_done=true
+  fi
+
+  if [[ "$changes_done" = true ]] ; then
+    attention "restart your session or source ~/.${shell}rc to apply changes"
+    say "${shell}rc.d configuration complete"
+  else
+    say "no changes done"
+  fi
+}
+
+configure_rc "bash"
+
+if zsh_config_enabled; then
+  configure_rc "zsh"
 fi
-
-if ! grep -q bash_aliases "$HOME/.bashrc"; then
-  say "appending source ~/.bash_aliases to ~/.bashrc"
-  printf "[[ -f ~/.bash_aliases ]] && . ~/.bash_aliases\n" >> "$HOME/.bashrc"
-  changes_done=true
-fi
-
-if ! grep -q "bashrc.d" "$HOME/.bashrc"; then
-  say "appending source bashrc.d/* to ~/.bashrc"
-  printf "# Source all files in ~/.bashrc.d\n" >> "$HOME/.bashrc"
-  printf "for f in ~/.bashrc.d/*; do source \$f; done\n" >> "$HOME/.bashrc"
-  changes_done=true
-fi
-
-if ! grep -q "END OF BASHRC" "$HOME/.bashrc"; then
-  say "appending end of file marker to ~/.bashrc"
-  printf "\n# --- END OF BASHRC ---\n# If anything appears below, move it to ~/.bashrc.d\n\n" >> "$HOME/.bashrc"
-  changes_done=true
-fi
-
-if [[ ! -d $HOME/.bashrc.d ]]; then
-  say "creating ~/.bashrc.d"
-  mkdir "$HOME/.bashrc.d"
-  chmod 700 "$HOME/.bashrc.d"
-  touch "$HOME/.bashrc.d/empty.bashrc"
-  changes_done=true
-fi
-
-if [[ "$changes_done" = true ]] ; then
-  attention "restart your session or source ~/.bashrc to apply changes"
-  say "bashrc.d configuration complete"
-else
-  say "no changes done"
-fi
-

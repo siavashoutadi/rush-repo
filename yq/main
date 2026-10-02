@@ -5,6 +5,11 @@ source "$REPO_PATH/lib.sh"
 # from GitHub
 
 install_function() {
+  if is_macos; then
+    brew_install yq
+    return 0
+  fi
+
   sudo curl -L "https://github.com/mikefarah/yq/releases/download/v$version/yq_linux_amd64" -o /usr/local/bin/yq
   sudo chmod +x /usr/local/bin/yq
 }

@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+unsupported "container-diff no longer ships darwin binaries, use 'crane diff' instead"

@@ -2,6 +2,11 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
+  if is_macos; then
+    brew_install doggo
+    return 0
+  fi
+
   pushtmp
   wget "https://github.com/mr-karan/doggo/releases/download/v${version}/doggo_${version}_Linux_x86_64.tar.gz"
   tar -xvzf doggo_1.0.5_Linux_x86_64.tar.gz

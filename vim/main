@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
+
 package_install vim
-sudo update-alternatives --set editor /usr/bin/vim.basic
 cp .vimrc ~/
+
+# update-alternatives is a debian thing, macos does not have it
+if ! is_macos; then
+  sudo update-alternatives --set editor /usr/bin/vim.basic
+fi

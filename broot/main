@@ -3,6 +3,11 @@ source "$REPO_PATH/lib.sh"
 
 say "installing broot"
 
+if is_macos; then
+  brew_install broot
+  exit 0
+fi
+
 needs wget
 pushtmp
 

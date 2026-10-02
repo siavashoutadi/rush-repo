@@ -1,9 +1,11 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+unsupported "fluxcd controllers are linux only"
+
 say "installing fluxcd"
 needs bashrc
 curl -s https://fluxcd.io/install.sh | sudo bash
 say "copying $HOME/.bashrc.d/flux.bashrc"
-cp flux.bashrc ~/.bashrc.d/
+install_shell_config flux
 attention "restart your session or source ~/.bashrc to apply changes"

@@ -1,3 +1,9 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
+
+if is_macos; then
+  cask_uninstall visual-studio-code
+  exit 0
+fi
+
 package_uninstall code

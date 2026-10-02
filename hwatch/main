@@ -4,5 +4,19 @@ source "$REPO_PATH/lib.sh"
 say "Installing hwatch..."
 
 version=$(get_github_release_version "blacknon/hwatch")
-say "Downloading Neohtop version $version"
-apt_install_deb "https://github.com/blacknon/hwatch/releases/download/${version}/hwatch-${version}.x86_64-unknown-linux-musl.deb"
+say "Downloading hwatch version $version"
+
+if is_macos; then
+  if [[ "$(os_arch)" == "arm64" ]]; then
+    target="aarch64-apple-darwin"
+  else
+    target="x86_64-apple-darwin"
+  fi
+
+  pushtmp
+  curl -sL "https://github.com/blacknon/hwatch/releases/download/${version}/hwatch-${version}.${target}.tar.gz" | tar -xzv
+  sudo install -m 755 hwatch /usr/local/bin/hwatch
+  popd
+else
+  apt_install_deb "https://github.com/blacknon/hwatch/releases/download/${version}/hwatch-${version}.x86_64-unknown-linux-musl.deb"
+fi

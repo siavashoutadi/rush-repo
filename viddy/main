@@ -4,6 +4,11 @@ source "$REPO_PATH/lib.sh"
 say "Installing Viddy..."
 
 install_function() {
+    if is_macos; then
+      brew_install viddy
+      return 0
+    fi
+
     url="https://github.com/sachaos/viddy/releases/download/v${version}/viddy-v${version}-linux-x86_64.tar.gz"
 
     pushtmp

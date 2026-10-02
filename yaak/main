@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+if is_macos; then
+  cask_install yaak
+  exit 0
+fi
+
 apt_install_deb https://github.com/mountain-loop/yaak/releases/download/v2025.1.2/yaak_2025.1.2_amd64.deb

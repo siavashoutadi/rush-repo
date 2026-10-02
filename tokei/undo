@@ -4,5 +4,6 @@ source "$REPO_PATH/lib.sh"
 case "$DISTRO" in
   arch|fedora)    package_uninstall tokei ;;
   debian|ubuntu)  bin_uninstall tokei ;;
+  macos)          brew_uninstall tokei ;;
   *)              warning "not available for distro:$DISTRO" ;;
 esac

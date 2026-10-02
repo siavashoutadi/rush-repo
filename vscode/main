@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
+
+if is_macos; then
+  cask_install visual-studio-code
+  exit 0
+fi
+
 needs wget
 
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > microsoft.gpg

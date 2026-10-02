@@ -3,16 +3,21 @@ source "$REPO_PATH/lib.sh"
 
 install_function() {
     needs bashrc
-    url="https://github.com/helmfile/helmfile/releases/download/v${version}/helmfile_${version}_linux_amd64.tar.gz"
 
-    pushtmp
-    curl -sL "$url" | tar -xzv helmfile
-    chmod +x helmfile
-    sudo mv helmfile /usr/local/bin/
-    popd
+    if is_macos; then
+      brew_install helmfile
+    else
+      url="https://github.com/helmfile/helmfile/releases/download/v${version}/helmfile_${version}_linux_amd64.tar.gz"
+
+      pushtmp
+      curl -sL "$url" | tar -xzv helmfile
+      chmod +x helmfile
+      sudo mv helmfile /usr/local/bin/
+      popd
+    fi
 
     say "copying $HOME/.bashrc.d/helmfile.bashrc"
-    cp helmfile.bashrc ~/.bashrc.d/
+    install_shell_config helmfile
     attention "restart your session or source ~/.bashrc to apply changes"
 }
 

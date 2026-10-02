@@ -2,7 +2,8 @@
 source "$REPO_PATH/lib.sh"
 case "$DISTRO" in
   arch)           package_uninstall fd ;;
-  debian|ubuntu)  github_install_helper fd sharkdp/fd ;;
+  debian|ubuntu)  package_uninstall fd ;;
   fedora)         package_uninstall fd-find ;;
+  macos)          brew_uninstall fd ;;
   *)              warning "not available for distro:$DISTRO" ;;
 esac

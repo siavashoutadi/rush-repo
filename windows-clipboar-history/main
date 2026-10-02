@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+require_linux
+
 say "Installing clipboard history manager"
 
 curl -sL http://install-clipboard.gustavosett.dev | bash

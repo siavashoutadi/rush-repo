@@ -5,4 +5,10 @@ say "Installing druk..."
 
 version=$(get_github_release_version "letstri/druk")
 say "Downloading druk version $version"
-apt_install_deb "https://github.com/letstri/druk/releases/download/v${version}/druk_${version}_amd64.deb"
+
+if is_macos; then
+  # druk ships no macos disk image, but its release contains a homebrew formula
+  brew_install "https://raw.githubusercontent.com/letstri/druk/v${version}/druk.rb"
+else
+  apt_install_deb "https://github.com/letstri/druk/releases/download/v${version}/druk_${version}_amd64.deb"
+fi

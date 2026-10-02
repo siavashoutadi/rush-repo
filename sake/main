@@ -2,8 +2,13 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
-  url="https://github.com/alajmo/sake/releases/download/v${version}/sake_${version}_linux_amd64.tar.gz"
   needs bashrc
+
+  if is_macos; then
+    url="https://github.com/alajmo/sake/releases/download/v${version}/sake_${version}_darwin_$(os_arch).tar.gz"
+  else
+    url="https://github.com/alajmo/sake/releases/download/v${version}/sake_${version}_linux_amd64.tar.gz"
+  fi
 
   pushtmp
   wget "$url" -O "sake.tar.gz"
@@ -13,7 +18,7 @@ install_function() {
   man_install sake.1
   popd
 
-  cp sake.bashrc ~/.bashrc.d/
+  install_shell_config sake
 }
 
 github_install_helper sake alajmo/sake

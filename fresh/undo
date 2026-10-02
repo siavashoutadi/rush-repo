@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+if is_macos; then
+  brew_uninstall fresh-editor
+  exit 0
+fi
+
 sudo apt remove fresh-editor -y

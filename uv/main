@@ -8,5 +8,5 @@ say "Installing uv"
 curl -LsSf https://astral.sh/uv/install.sh | sh
 
 say "Copy uv.bashrc"
-cp uv.bashrc ~/.bashrc.d/
+install_shell_config uv
 attention "restart your session or source ~/.bashrc to apply changes"

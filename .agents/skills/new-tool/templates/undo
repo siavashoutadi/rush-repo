@@ -3,4 +3,9 @@ source "$REPO_PATH/lib.sh"
 
 say "Uninstalling <PACKAGE_NAME>..."
 
-sudo apt remove -y <PACKAGE_NAME>
+if is_macos; then
+  brew_uninstall <PACKAGE_NAME>
+  exit 0
+fi
+
+package_uninstall <PACKAGE_NAME>

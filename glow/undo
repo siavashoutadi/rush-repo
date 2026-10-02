@@ -3,4 +3,4 @@ source "$REPO_PATH/lib.sh"
 
 say "Uninstalling glow..."
 
-sudo apt remove -y glow
+package_uninstall glow

@@ -2,16 +2,23 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
-    url="https://github.com/cnrancher/autok3s/releases/download/v${version}/autok3s_linux_amd64"
     needs bashrc
+
+    if is_macos; then
+      binary="autok3s_darwin_$(os_arch)"
+    else
+      binary="autok3s_linux_amd64"
+    fi
+
+    url="https://github.com/cnrancher/autok3s/releases/download/v${version}/${binary}"
 
     pushtmp
     wget "$url"
-    sudo mv autok3s_linux_amd64 /usr/local/bin/autok3s
+    sudo mv "$binary" /usr/local/bin/autok3s
     sudo chmod +x /usr/local/bin/autok3s
     popd
     say "copying $HOME/.bashrc.d/autok3s.bashrc"
-    cp autok3s.bashrc ~/.bashrc.d/
+    install_shell_config autok3s
     attention "restart your session or source ~/.bashrc to apply changes"
 }
 

@@ -3,4 +3,17 @@ source "$REPO_PATH/lib.sh"
 
 say "Installing dev janitor..."
 
-apt_install_deb https://github.com/cocojojo5213/Dev-Janitor/releases/download/v2.2.7.2/Dev.Janitor_2.2.9_amd64.deb
+version=$(get_github_release_version "cocojojo5213/Dev-Janitor")
+
+if is_macos; then
+  if [[ "$(os_arch)" == "arm64" ]]; then
+    asset="Dev.Janitor_${version}_aarch64.dmg"
+  else
+    asset="Dev.Janitor_${version}_x64.dmg"
+  fi
+
+  dmg_install_app "https://github.com/cocojojo5213/Dev-Janitor/releases/download/v${version}/${asset}" "Dev Janitor.app"
+  exit 0
+fi
+
+apt_install_deb "https://github.com/cocojojo5213/Dev-Janitor/releases/download/v${version}/Dev.Janitor_${version}_amd64.deb"

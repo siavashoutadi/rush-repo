@@ -3,7 +3,18 @@ source "$REPO_PATH/lib.sh"
 
 say "Installing github store..."
 
-version=$(get_github_release_version "rainxchzed/Github-Store")
+version=$(get_github_release_version "komi-store/komi-store")
 say "Downloading Github Store version $version"
 
-apt_install_deb "https://github.com/rainxchzed/Github-Store/releases/download/${version}/Github.Store-${version}_amd64.deb"
+if is_macos; then
+  if [[ "$(os_arch)" == "arm64" ]]; then
+    asset="Komi-Store-${version}-arm64.dmg"
+  else
+    asset="Komi-Store-${version}-x64.dmg"
+  fi
+
+  dmg_install_app "https://github.com/komi-store/komi-store/releases/download/v${version}/${asset}" "Komi Store.app"
+  exit 0
+fi
+
+apt_install_deb "https://github.com/komi-store/komi-store/releases/download/v${version}/komi-store_${version}-${version}_amd64.deb"

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+require_linux
+
 say "Installing systemd-manager-tui..."
 
 version=$(get_github_release_version "matheus-git/systemd-manager-tui")

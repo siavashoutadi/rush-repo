@@ -1,3 +1,6 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
+
+unsupported "it manages libvirt virtual machines, macos has no cockpit"
+
 package_uninstall virt-manager

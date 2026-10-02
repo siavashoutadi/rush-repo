@@ -3,4 +3,9 @@ source "$REPO_PATH/lib.sh"
 
 say "Uninstalling Neohtop..."
 
+if is_macos; then
+  cask_uninstall neohtop
+  exit 0
+fi
+
 sudo apt remove -y neo-htop

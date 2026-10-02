@@ -2,6 +2,11 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
+  if is_macos; then
+    brew_install procs
+    return 0
+  fi
+
   pushtmp
   wget https://github.com/dalance/procs/releases/download/v${version}/procs-v${version}-x86_64-linux.zip
   unzip procs-v0.14.10-x86_64-linux.zip

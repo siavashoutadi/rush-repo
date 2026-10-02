@@ -5,5 +5,4 @@ source "$REPO_PATH/lib.sh"
 say "installing kubectl (google)"
 sudo curl --output /usr/local/bin/kubectl -L "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
 sudo chmod +x /usr/local/bin/kubectl
-mkdir -p ~/.bashrc.d/
-cp kubectl.bashrc ~/.bashrc.d/
+install_shell_config kubectl

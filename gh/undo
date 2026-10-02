@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
-sudo apt-get remove gh -y
+package_uninstall gh

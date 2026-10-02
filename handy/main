@@ -3,6 +3,11 @@ source "$REPO_PATH/lib.sh"
 
 say "Installing handy..."
 
+if is_macos; then
+  cask_install handy
+  exit 0
+fi
+
 version=$(get_github_release_version "cjpais/Handy")
 say "Downloading handy version $version"
 apt_install_deb "https://github.com/cjpais/Handy/releases/download/v${version}/Handy_${version}_amd64.deb"

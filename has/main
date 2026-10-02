@@ -2,6 +2,11 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
+  if is_macos; then
+    brew_install has
+    return 0
+  fi
+
   curl -sL https://raw.githubusercontent.com/kdabir/has/master/has | sudo tee /usr/local/bin/has > /dev/null
   sudo chmod +x /usr/local/bin/has
 }

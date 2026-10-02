@@ -8,5 +8,5 @@ package_install bison
 bash < <(curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer)
 
 say "copying ~/.bashrc.d/gvm.bashrc"
-cp gvm.bashrc ~/.bashrc.d/
+install_shell_config gvm
 attention "restart your session or source ~/.bashrc to apply changes"

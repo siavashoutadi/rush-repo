@@ -2,6 +2,11 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
+    if is_macos; then
+      brew_install k9s
+      return 0
+    fi
+
     url="https://github.com/derailed/k9s/releases/download/v${version}/k9s_Linux_amd64.tar.gz"
 
     pushtmp

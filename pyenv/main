@@ -5,13 +5,17 @@ say "installing pyenv"
 
 needs bashrc
 
-package_install make build-essential \
-    libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
-    wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev \
-    libxmlsec1-dev libffi-dev liblzma-dev
+if is_macos; then
+  package_install openssl@3 zlib bzip2 readline sqlite libffi xz tcl-tk libxml2 libxmlsec1 ncurses
+else
+  package_install make build-essential \
+      libssl-dev zlib1g-dev libbz2-dev libreadline-dev libsqlite3-dev \
+      wget curl llvm libncursesw5-dev xz-utils tk-dev libxml2-dev \
+      libxmlsec1-dev libffi-dev liblzma-dev
+fi
 
-curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+curl_install_script https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer
 
 say "copying ~/.bashrc.d/pyenv.bashrc"
-cp pyenv.bashrc ~/.bashrc.d/
+install_shell_config pyenv
 attention "restart your session or source ~/.bashrc to apply changes"

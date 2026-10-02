@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+source "$REPO_PATH/lib.sh"
+
+say "removing ~/.bashrc.d/docker.bashrc"
+remove_shell_config docker
+
+cask_uninstall docker-desktop

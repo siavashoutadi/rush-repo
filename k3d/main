@@ -5,5 +5,5 @@ say "installing k3d"
 needs bashrc
 curl -s https://raw.githubusercontent.com/k3d-io/k3d/main/install.sh | bash
 say "copying $HOME/.bashrc.d/k3d.bashrc"
-cp k3d.bashrc ~/.bashrc.d/
+install_shell_config k3d
 attention "restart your session or source ~/.bashrc to apply changes"

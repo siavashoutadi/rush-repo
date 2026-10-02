@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+require_linux
+
 # Get current user info
 CURRENT_USER=$(whoami)
 USER_UID=$(id -u)

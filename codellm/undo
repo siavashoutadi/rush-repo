@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+if is_macos; then
+  bin_uninstall codellm
+  exit 0
+fi
+
 sudo apt remove -y codellm

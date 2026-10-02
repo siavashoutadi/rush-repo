@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
-sudo apt install xclip
+package_install xclip
+
+if is_macos; then
+  attention "xclip needs XQuartz on macos, install it with: brew install --cask xquartz"
+fi

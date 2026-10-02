@@ -1,6 +1,10 @@
-# Return the linux distro as a lowercase string
+# Return the linux distro as a lowercase string, or "macos" when not on linux
 linux_distro() {
-  if [ -f "/etc/os-release" ]; then
+  if is_macos; then
+    echo "macos"
+  elif ! is_linux; then
+    echo "unknown"
+  elif [ -f "/etc/os-release" ]; then
     source /etc/os-release
     dist=$(echo "$ID" | tr '[:upper:]' '[:lower:]')
     if [[ "$dist" == "zorin" ]]; then
@@ -15,8 +19,6 @@ linux_distro() {
     echo "debian"
   elif [ -f "/etc/redhat-release" ]; then
     echo "centos"
-  elif [ "$(uname)" == "Darwin" ]; then
-    echo "mac"
   else
     echo "unknown"
   fi

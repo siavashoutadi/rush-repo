@@ -4,5 +4,6 @@ source "$REPO_PATH/lib.sh"
 case "$DISTRO" in
   arch)                  package_uninstall python-pipx ;;
   debian|fedora|ubuntu)  package_uninstall pipx ;;
+  macos)                 brew_uninstall pipx ;;
   *)                     warning "not available for distro:$DISTRO" ;;
 esac

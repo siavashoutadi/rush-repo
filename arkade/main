@@ -4,8 +4,12 @@ source "$REPO_PATH/lib.sh"
 say "installing arkade"
 needs bashrc
 
-curl -sLS https://get.arkade.dev | sudo sh
+if is_macos; then
+  brew_install arkade
+else
+  curl_install_script https://get.arkade.dev
+fi
 
 say "copying ~/.bashrc.d/arkade.bashrc"
-cp arkade.bashrc ~/.bashrc.d/
+install_shell_config arkade
 attention "restart your session or source ~/.bashrc to apply changes"

@@ -3,6 +3,11 @@ source "$REPO_PATH/lib.sh"
 
 say "Uninstalling code-server..."
 
-sudo systemctl disable --now code-server@$USER
-sudo apt remove -y code-server
+if is_macos; then
+  brew_uninstall code-server
+else
+  sudo systemctl disable --now code-server@$USER
+  sudo apt remove -y code-server
+fi
+
 rm -rf ~/.config/code-server/config.yaml

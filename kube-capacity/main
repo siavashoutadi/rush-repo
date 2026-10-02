@@ -2,7 +2,15 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
-  curl -sL "https://github.com/robscott/kube-capacity/releases/download/v$version/kube-capacity_v${version}_linux_x86_64.tar.gz" | tar -xzv kube-capacity
+  if is_macos; then
+    arch="$(os_arch)"
+    [[ "$arch" == "amd64" ]] && arch="x86_64"
+    asset="kube-capacity_v${version}_darwin_${arch}.tar.gz"
+  else
+    asset="kube-capacity_v${version}_linux_x86_64.tar.gz"
+  fi
+
+  curl -sL "https://github.com/robscott/kube-capacity/releases/download/v$version/$asset" | tar -xzv kube-capacity
   sudo install -m 755 kube-capacity /usr/local/bin/kube-capacity
   rm kube-capacity
 }

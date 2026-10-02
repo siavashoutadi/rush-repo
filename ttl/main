@@ -3,6 +3,12 @@ source "$REPO_PATH/lib.sh"
 
 say "Installing ttl..."
 
+if is_macos; then
+  brew_install ttl
+  attention "ttl needs root for raw sockets on macos, run it with sudo"
+  exit 0
+fi
+
 pushtmp
 curl -LO https://github.com/lance0/ttl/releases/latest/download/ttl-x86_64-unknown-linux-musl.tar.gz
 tar xzf ttl-*.tar.gz

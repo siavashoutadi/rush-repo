@@ -5,6 +5,6 @@ distro_script() {
   if [[ -f "$script" ]]; then
     . "$script"
   else
-    fail "not available for distro:$DISTRO"
+    unsupported "no ${script} script, this tool is not available for $OS"
   fi
 }

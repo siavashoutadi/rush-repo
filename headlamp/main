@@ -2,8 +2,11 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
+    if is_macos; then
+      cask_install headlamp
+      return 0
+    fi
+
     # TODO: latest version is wrong. Hardcoding to 0.22.0
     apt_install_deb "https://github.com/headlamp-k8s/headlamp/releases/download/v0.22.0/headlamp_0.22.0-1_amd64.deb"
 }
-
-github_install_helper headlamp "headlamp-k8s/headlamp"

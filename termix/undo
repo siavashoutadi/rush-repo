@@ -2,4 +2,10 @@
 source "$REPO_PATH/lib.sh"
 
 say "Uninstalling termix"
+
+if is_macos; then
+  dmg_uninstall_app "Termix.app"
+  exit 0
+fi
+
 package_uninstall termix

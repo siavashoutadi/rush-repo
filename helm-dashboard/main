@@ -2,7 +2,13 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
-    url="https://github.com/komodorio/helm-dashboard/releases/download/v${version}/helm-dashboard_${version}_Linux_x86_64.tar.gz"
+    if is_macos; then
+      arch="$(os_arch)"
+      [[ "$arch" == "amd64" ]] && arch="x86_64"
+      url="https://github.com/komodorio/helm-dashboard/releases/download/v${version}/helm-dashboard_${version}_Darwin_${arch}.tar.gz"
+    else
+      url="https://github.com/komodorio/helm-dashboard/releases/download/v${version}/helm-dashboard_${version}_Linux_x86_64.tar.gz"
+    fi
 
     pushtmp
     curl -sL "$url" | tar -xzv helm-dashboard

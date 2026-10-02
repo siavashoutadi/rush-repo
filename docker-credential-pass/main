@@ -4,12 +4,18 @@ source "$REPO_PATH/lib.sh"
 needs pass
 
 install_function() {
-    url=https://github.com/docker/docker-credential-helpers/releases/download/v${version}/docker-credential-pass-v${version}.linux-amd64
+    if is_macos; then
+      binary="docker-credential-pass-v${version}.darwin-$(os_arch)"
+    else
+      binary="docker-credential-pass-v${version}.linux-amd64"
+    fi
+
+    url="https://github.com/docker/docker-credential-helpers/releases/download/v${version}/${binary}"
 
     pushtmp
     wget "$url"
-    chmod +x docker-credential-pass-v${version}.linux-amd64
-    sudo mv docker-credential-pass-v${version}.linux-amd64 /usr/local/bin/docker-credential-pass
+    chmod +x "$binary"
+    sudo mv "$binary" /usr/local/bin/docker-credential-pass
     popd
 }
 

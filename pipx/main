@@ -4,5 +4,6 @@ source "$REPO_PATH/lib.sh"
 case "$DISTRO" in
   arch)                  package_install python-pipx ;;
   debian|fedora|ubuntu)  package_install pipx ;;
+  macos)                 brew_install pipx ;;
   *)                     fail "not available for distro:$DISTRO" ;;
 esac

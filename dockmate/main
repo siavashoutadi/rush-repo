@@ -3,4 +3,5 @@ source "$REPO_PATH/lib.sh"
 
 say "Installing DockMate..."
 
-curl -fsSL https://raw.githubusercontent.com/shubh-io/DockMate/main/install.sh | sh
+# the upstream installer handles both homebrew and the darwin application
+curl_install_script https://raw.githubusercontent.com/shubh-io/DockMate/main/install.sh

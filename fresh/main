@@ -3,6 +3,13 @@ source "$REPO_PATH/lib.sh"
 
 say "Installing fresh..."
 
+if is_macos; then
+  # the release ships a homebrew formula for the editor
+  version=$(get_github_release_version "sinelaw/fresh")
+  brew_install "https://github.com/sinelaw/fresh/releases/download/v${version}/fresh.rb"
+  exit 0
+fi
+
 pushtmp
 curl -sL $(curl -s https://api.github.com/repos/sinelaw/fresh/releases/latest | grep "browser_download_url.*_$(dpkg --print-architecture)\.deb" | cut -d '"' -f 4) -o fresh-editor.deb && sudo dpkg -i fresh-editor.deb
 popd

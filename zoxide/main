@@ -4,5 +4,5 @@ needs bashrc
 say "installing zoxide"
 package_install zoxide
 say "copying $HOME/.bashrc.d/zoxide.bashrc"
-cp zoxide.bashrc ~/.bashrc.d/
+install_shell_config zoxide
 attention "restart your session or source ~/.bashrc to apply changes"

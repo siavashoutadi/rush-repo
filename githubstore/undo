@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
-sudo apt remove github-store -y
+if is_macos; then
+  dmg_uninstall_app "*Komi*Store*.app"
+  exit 0
+fi
+
+sudo apt remove komi-store -y

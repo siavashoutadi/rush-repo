@@ -10,7 +10,9 @@ else
     cd nerd-fonts
     ./install.sh
     popd
-    fc-cache -fv
+
+    # macos does not ship fontconfig, the font book picks the fonts up
+    if command_exist fc-cache; then
+      fc-cache -fv
+    fi
 fi
-
-

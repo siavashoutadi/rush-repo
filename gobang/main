@@ -3,11 +3,25 @@ source "$REPO_PATH/lib.sh"
 
 install_function() {
   pushtmp
-  url="https://github.com/TaKO8Ki/gobang/releases/download/v${version}/gobang-${version}-x86_64-unknown-linux-musl.tar.gz"
+
+  if is_macos; then
+    # gobang only publishes an intel macos build
+    if [[ "$(os_arch)" != "amd64" ]]; then
+      fail "gobang only publishes an x86_64-apple-darwin build, apple silicon needs rosetta"
+      popd
+      exit 1
+    fi
+
+    target="x86_64-apple-darwin"
+  else
+    target="x86_64-unknown-linux-musl"
+  fi
+
+  url="https://github.com/TaKO8Ki/gobang/releases/download/v${version}/gobang-${version}-${target}.tar.gz"
   wget "$url" -O "gobang.tar.gz"
-  tar -zxvf "gobang.tar.gz" "gobang-${version}-x86_64-unknown-linux-musl/gobang"
-  sudo install -m 755 "gobang-${version}-x86_64-unknown-linux-musl/gobang" /usr/local/bin/gobang
-  rm -rf "gobang-${version}-x86_64-unknown-linux-musl"
+  tar -zxvf "gobang.tar.gz" "gobang-${version}-${target}/gobang"
+  sudo install -m 755 "gobang-${version}-${target}/gobang" /usr/local/bin/gobang
+  rm -rf "gobang-${version}-${target}"
   rm -f "gobang.tar.gz"
   popd
 }

@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+if is_macos; then
+  dmg_uninstall_app "*Dev*Janitor*.app"
+  exit 0
+fi
+
 sudo apt remove -y dev-janitor

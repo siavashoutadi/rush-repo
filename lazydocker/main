@@ -2,6 +2,11 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
+  if is_macos; then
+    brew_install lazydocker
+    return 0
+  fi
+
   url="https://github.com/jesseduffield/lazydocker/releases/download/v$version/lazydocker_${version}_Linux_x86_64.tar.gz"
   
   pushtmp

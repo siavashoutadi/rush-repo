@@ -2,6 +2,11 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
+  if is_macos; then
+    brew_install cheat
+    return 0
+  fi
+
   wget "https://github.com/cheat/cheat/releases/download/${version}/cheat-linux-amd64.gz"
   gzip -d cheat-linux-amd64.gz
   sudo install cheat-linux-amd64 /usr/local/bin/cheat

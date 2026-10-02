@@ -18,4 +18,8 @@ install_function() {
 version=$(get_github_release_version "BIRSAx2/mdcat" | sed 's/^mdcat-//')
 say "Installing mdcat version $version"
 
+if is_macos; then
+  unsupported "mdcat publishes no darwin build"
+fi
+
 github_install_helper mdcat BIRSAx2/mdcat --version "$version"

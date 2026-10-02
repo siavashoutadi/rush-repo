@@ -2,5 +2,7 @@
 source "$REPO_PATH/lib.sh"
 
 rm -rf ~/.local/share/fonts/NerdFonts/
-fc-cache -fv
 
+if command_exist fc-cache; then
+  fc-cache -fv
+fi

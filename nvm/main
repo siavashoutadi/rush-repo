@@ -11,7 +11,7 @@ install_function() {
     curl -o- $url | bash
     unset $PROFILE
     say "copying ~/.bashrc.d/nvm.bashrc"
-    cp nvm.bashrc ~/.bashrc.d/
+    install_shell_config nvm
     attention "restart your session or source ~/.bashrc to apply changes"
     source ~/.nvm/nvm.sh
 }

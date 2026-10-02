@@ -2,6 +2,6 @@
 source "$REPO_PATH/lib.sh"
 
 say "removing ~/.bashrc.d/docker.bashrc"
-rm -f "$HOME/.bashrc.d/docker.bashrc"
+remove_shell_config docker
 
 package_uninstall docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin

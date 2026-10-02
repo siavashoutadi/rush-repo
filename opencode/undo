@@ -3,8 +3,12 @@ source "$REPO_PATH/lib.sh"
 
 say "Uninstalling opencode..."
 
-sudo apt remove -y opencode
+if ! is_macos; then
+  sudo apt remove -y opencode
+else
+  brew_uninstall opencode
+fi
 
 rm -rf ~/.opencode/bin/opencode
 
-sed -i '/# opencode/d;/export PATH=.*\.opencode\/bin.*/d' ~/.bashrc
+sed_edit '/# opencode/d;/export PATH=.*\.opencode\/bin.*/d' ~/.bashrc

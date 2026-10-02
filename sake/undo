@@ -3,4 +3,4 @@ source "$REPO_PATH/lib.sh"
 
 bin_uninstall sake
 man_uninstall sake.1
-rm -f ~/.bashrc.d/sake.bashrc
+remove_shell_config sake

@@ -3,4 +3,9 @@ source "$REPO_PATH/lib.sh"
 
 say "Uninstalling gitwand..."
 
+if is_macos; then
+  dmg_uninstall_app "GitWand.app"
+  exit 0
+fi
+
 sudo apt remove -y git-wand

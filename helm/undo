@@ -2,4 +2,4 @@
 source "$REPO_PATH/lib.sh"
 
 bin_uninstall helm
-rm -rf $HOME/.bashrc.d/helm.bashrc
+remove_shell_config helm

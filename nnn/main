@@ -5,6 +5,6 @@ needs bashrc
 package_install nnn
 
 say "copying bashrc.d config"
-cp nnn.bashrc ~/.bashrc.d/nnn.bashrc
+install_shell_config nnn
 
 nnn -V

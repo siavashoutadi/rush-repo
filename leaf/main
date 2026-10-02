@@ -2,6 +2,11 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
+  if is_macos; then
+    brew_install leaf
+    return 0
+  fi
+
   pushtmp
   curl -sL "https://github.com/RivoLink/leaf/releases/download/${version}/leaf-linux-x86_64" -o leaf
   sudo install leaf /usr/local/bin/leaf

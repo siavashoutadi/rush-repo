@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
-bin_uninstall ngrok
-rm ~/.ngrok2/ngrok.yml
+if is_macos; then
+  cask_uninstall ngrok
+else
+  bin_uninstall ngrok
+fi
+
+rm -f ~/.ngrok2/ngrok.yml

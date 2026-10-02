@@ -14,5 +14,5 @@ cp ./config ~/.config/git/config
 cp ./attributes ~/.config/git/attributes
 cp ./ignore ~/.config/git/ignore
 
-sed -i "s/EMAIL/$GIT_USER_EMAIL/g" ~/.config/git/config
-sed -i "s/NAME/$GIT_USER_NAME/g" ~/.config/git/config
+sed_edit "s/EMAIL/$GIT_USER_EMAIL/g" ~/.config/git/config
+sed_edit "s/NAME/$GIT_USER_NAME/g" ~/.config/git/config

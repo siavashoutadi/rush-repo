@@ -3,6 +3,11 @@ source "$REPO_PATH/lib.sh"
 
 say "installing fastfetch"
 
+if is_macos; then
+  brew_install fastfetch
+  exit 0
+fi
+
 needs wget
 pushtmp
 

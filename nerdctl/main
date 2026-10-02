@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
+
+require_linux
+
 needs bashrc
 
 say "Installing nerdctl full version (rootless)"

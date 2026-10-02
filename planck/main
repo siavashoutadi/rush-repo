@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
-sudo apt-get install xdotool -y
+say "Installing Planck..."
 
 version=$(get_github_release_version "stella-labs/planck-releases")
+
+if is_macos; then
+  dmg_install_app "https://github.com/stella-labs/planck-releases/releases/download/${version}/Planck_${version}_universal.dmg" "Planck.app"
+  exit 0
+fi
+
+sudo apt-get install xdotool -y
 
 url="https://github.com/stella-labs/planck-releases/releases/download/${version}/Planck_${version}_amd64.deb"
 

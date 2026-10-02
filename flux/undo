@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+unsupported "fluxcd controllers are linux only"
+
 bin_uninstall flux
-rm -rf $HOME/.bashrc.d/flux.bashrc
+remove_shell_config flux

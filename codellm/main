@@ -3,7 +3,19 @@ source "$REPO_PATH/lib.sh"
 
 say "installing codellm"
 
-version=$(curl -s "https://api.github.com/repos/abacusai/codellm-releases/releases/latest" | grep "tag_name" | cut -d : -f 2,3 | tr -d \"\ ,v)
-url="https://github.com/abacusai/codellm-releases/releases/download/${version}/codellm_${version}_amd64.deb"
+version=$(curl -s "https://api.github.com/repos/abacusai/deepagent-releases/releases/latest" | grep "tag_name" | cut -d : -f 2,3 | tr -d \"\ ,v)
+
+if is_macos; then
+  pushtmp
+  curl -sL "https://github.com/abacusai/deepagent-releases/releases/download/${version}/AbacusAIDesktop-darwin-$(os_arch)-${version}.zip" -o codellm.zip
+  unzip -o codellm.zip -d ~/.local/bin
+  rm codellm.zip
+  popd
+
+  attention "add ~/.local/bin to your PATH"
+  exit 0
+fi
+
+url="https://github.com/abacusai/deepagent-releases/releases/download/${version}/abacusai-app_${version}_amd64.deb"
 
 apt_install_deb $url

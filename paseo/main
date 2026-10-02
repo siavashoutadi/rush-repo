@@ -3,6 +3,11 @@ source "$REPO_PATH/lib.sh"
 
 say "Installing paseo..."
 
+if is_macos; then
+  cask_install paseo
+  exit 0
+fi
+
 version=$(get_github_release_version "getpaseo/paseo")
 say "Downloading paseo version $version"
 apt_install_deb "https://github.com/getpaseo/paseo/releases/download/v${version}/Paseo-${version}-amd64.deb"

@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+require_linux
+
 say "uninstalling nerdctl (rootless)"
 
 for f in $(find /usr/local/bin -maxdepth 1 -type l -printf '%p -> %l\n' | awk '/nerdctl/ {print $1}'); do echo $f;done

@@ -2,6 +2,12 @@
 source "$REPO_PATH/lib.sh"
 
 say "Installing duf"
+
+if is_macos; then
+  brew_install duf
+  exit 0
+fi
+
 pushtmp
 curl -sL https://github.com/muesli/duf/releases/download/v0.8.1/duf_0.8.1_linux_x86_64.tar.gz | tar -xvz duf
 chmod +x duf

@@ -2,6 +2,11 @@
 source "$REPO_PATH/lib.sh"
 
 install_function() {
+    if is_macos; then
+      brew_install git-delta
+      return 0
+    fi
+
     apt_install_deb "https://github.com/dandavison/delta/releases/download/${version}/git-delta_${version}_amd64.deb"
 }
 
