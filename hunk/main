@@ -1,12 +1,27 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+if is_macos; then
+  brew_install hunk
+  exit 0
+fi
+
 install_function() {
+    # upstream names the release archives x64 / arm64
+    case "$(os_arch)" in
+        amd64) arch="x64" ;;
+        arm64) arch="arm64" ;;
+        *)     fail "hunk publishes no linux build for $(os_arch)"
+               exit 1 ;;
+    esac
+
+    archive="hunkdiff-linux-${arch}"
+
     pushtmp
-    curl -sL "https://github.com/modem-dev/hunk/releases/download/v${version}/hunkdiff-linux-x64.tar.gz" -o hunk.tar.gz
+    curl -sL "https://github.com/modem-dev/hunk/releases/download/v${version}/${archive}.tar.gz" -o hunk.tar.gz
     tar -xvzf hunk.tar.gz
-    sudo install hunkdiff-linux-x64/hunk /usr/local/bin/hunk
-    rm -rf hunkdiff-linux-x64
+    sudo install "$archive/hunk" /usr/local/bin/hunk
+    rm -rf "$archive"
     popd
 }
 

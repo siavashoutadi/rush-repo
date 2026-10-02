@@ -1,4 +1,9 @@
 #!/usr/bin/env bash
 source "$REPO_PATH/lib.sh"
 
+if is_macos; then
+  brew_uninstall hunk
+  exit 0
+fi
+
 bin_uninstall hunk
