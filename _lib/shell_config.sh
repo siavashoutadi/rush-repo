@@ -24,12 +24,12 @@ zsh_config_enabled() {
 install_shell_config() {
   local stem="$1"
 
-  mkdir -p "$(bashrc_dir)"
-  cp "$stem.bashrc" "$(bashrc_dir)/"
+  run mkdir -p "$(bashrc_dir)"
+  run cp "$stem.bashrc" "$(bashrc_dir)/"
 
   if [[ -f "$stem.zshrc" ]] && zsh_config_enabled; then
-    mkdir -p "$(zshrc_dir)"
-    cp "$stem.zshrc" "$(zshrc_dir)/"
+    run mkdir -p "$(zshrc_dir)"
+    run cp "$stem.zshrc" "$(zshrc_dir)/"
   fi
 }
 
@@ -37,6 +37,6 @@ install_shell_config() {
 remove_shell_config() {
   local stem="$1"
 
-  rm -f "$(bashrc_dir)/$stem.bashrc"
-  rm -f "$(zshrc_dir)/$stem.zshrc"
+  run rm -f "$(bashrc_dir)/$stem.bashrc"
+  run rm -f "$(zshrc_dir)/$stem.zshrc"
 }
